@@ -4,3 +4,6 @@ dist/
 .codex/
 *.log
 *.tsbuildinfo
+godot/.godot/
+godot/export/
+godot/builds/
