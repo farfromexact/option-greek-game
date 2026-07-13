@@ -1,0 +1,65 @@
+; Engine configuration file.
+; Best edited using the Godot editor, but kept readable for review.
+
+config_version=5
+
+[application]
+
+config/name="Volatility Forge 2D"
+config/description="A tactile options-risk learning game built for short, replayable desk missions."
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=1440
+window/size/viewport_height=900
+window/size/window_width_override=1280
+window/size/window_height_override=800
+window/size/resizable=true
+window/stretch/mode="disabled"
+window/handheld/orientation=1
+
+[input]
+
+run_pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":32,"unicode":32)]
+}
+step_market={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":78,"unicode":110)]
+}
+open_mission={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":49,"unicode":49)]
+}
+open_build={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":50,"unicode":50)]
+}
+open_run={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":51,"unicode":51)]
+}
+open_review={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":52,"unicode":52)]
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.031, 0.043, 0.041, 1)
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+timers/increment_update=true
+
+[accessibility]
+
+general/accessibility_support=true

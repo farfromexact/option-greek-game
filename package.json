@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "goal-audit": "node scripts/goal-audit.mjs",
-    "verify": "npm run build && npm run goal-audit"
+    "verify": "npm run build && npm run goal-audit",
+    "godot:verify": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/godot-verify.ps1",
+    "verify:all": "npm run verify && npm run godot:verify"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",

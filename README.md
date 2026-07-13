@@ -6,6 +6,23 @@ Volatility Forge 把期权组合拆成可以操作的风险机器：玩家选择
 
 > 这是一个教育和训练用途的模拟器，不连接真实交易账户，不构成投资建议。
 
+## 两个可运行版本
+
+- **Web 原型**：现有 Vite + React 版本，保留完整的三栏研究工作台与 126 个任务入口。
+- **Godot 2D 版**：位于 [`godot/`](godot/README.md)，把流程重排为 `Mission → Build → Run → Review`，加入固定结算周期、正式/练习隔离、预提交概率、真实报价成交、不可删除的审计轨迹和更适合触控的 2D 界面。
+
+运行 Godot 版：
+
+```powershell
+godot --path godot
+```
+
+验证两个版本：
+
+```powershell
+npm run verify:all
+```
+
 ## Screenshots
 
 ### 桌面主界面
@@ -88,6 +105,8 @@ npm run verify
 | `npm run preview` | 本地预览生产构建 |
 | `npm run goal-audit` | 检查核心玩法与 v1.0 功能是否仍然接线完整 |
 | `npm run verify` | build + goal-audit |
+| `npm run godot:verify` | Godot 解析、规则、引擎、主流程与场景冒烟测试 |
+| `npm run verify:all` | 同时验证 Web 与 Godot 两个版本 |
 
 ## 目录结构
 
