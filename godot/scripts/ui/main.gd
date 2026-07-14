@@ -122,14 +122,14 @@ func _build_shell() -> void:
 
 	var outer := MarginContainer.new()
 	outer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	outer.add_theme_constant_override("margin_left", 20)
-	outer.add_theme_constant_override("margin_right", 20)
-	outer.add_theme_constant_override("margin_top", 16)
-	outer.add_theme_constant_override("margin_bottom", 16)
+	outer.add_theme_constant_override("margin_left", 28)
+	outer.add_theme_constant_override("margin_right", 28)
+	outer.add_theme_constant_override("margin_top", 22)
+	outer.add_theme_constant_override("margin_bottom", 20)
 	add_child(outer)
 
 	var shell := VBoxContainer.new()
-	shell.add_theme_constant_override("separation", 12)
+	shell.add_theme_constant_override("separation", 16)
 	outer.add_child(shell)
 
 	shell.add_child(_build_topbar())
@@ -144,39 +144,39 @@ func _build_shell() -> void:
 
 	var page_margin := MarginContainer.new()
 	page_margin.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	page_margin.add_theme_constant_override("margin_right", 8)
-	page_margin.add_theme_constant_override("margin_bottom", 8)
+	page_margin.add_theme_constant_override("margin_right", 6)
+	page_margin.add_theme_constant_override("margin_bottom", 12)
 	_page_scroll.add_child(page_margin)
 
 	_page_content = VBoxContainer.new()
 	_page_content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_page_content.add_theme_constant_override("separation", 14)
+	_page_content.add_theme_constant_override("separation", 20)
 	page_margin.add_child(_page_content)
 
 	shell.add_child(_build_bottom_bar())
 
 	_toast = ToastView.new()
 	_toast.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	_toast.position = Vector2(-392.0, 18.0)
-	_toast.size = Vector2(370.0, 84.0)
+	_toast.position = Vector2(-384.0, 18.0)
+	_toast.size = Vector2(360.0, 80.0)
 	_toast.mouse_filter = Control.MOUSE_FILTER_STOP
 	add_child(_toast)
 
 
 func _build_topbar() -> Control:
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size.y = 70.0
+	panel.custom_minimum_size.y = 64.0
 	panel.add_theme_stylebox_override(
 		"panel",
-		ForgeTheme.panel_style(ForgeTheme.SURFACE, 18, ForgeTheme.BORDER, 1),
+		ForgeTheme.panel_style(ForgeTheme.SURFACE, 12, ForgeTheme.BORDER, 1),
 	)
 	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 14)
+	row.add_theme_constant_override("separation", 10)
 	panel.add_child(row)
 
 	var icon := TextureRect.new()
 	icon.texture = load("res://assets/icon.svg")
-	icon.custom_minimum_size = Vector2(38.0, 38.0)
+	icon.custom_minimum_size = Vector2(32.0, 32.0)
 	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	row.add_child(icon)
@@ -184,8 +184,8 @@ func _build_topbar() -> Control:
 	var brand := VBoxContainer.new()
 	brand.add_theme_constant_override("separation", 0)
 	row.add_child(brand)
-	brand.add_child(_make_label("RISK INTUITION, ONE STEP AT A TIME", 11, ForgeTheme.MUTED))
-	brand.add_child(_make_label("Volatility Forge 2D", 22, ForgeTheme.TEXT))
+	brand.add_child(_make_label("RISK INTUITION, ONE STEP AT A TIME", 10, ForgeTheme.FAINT))
+	brand.add_child(_make_label("Volatility Forge 2D", 21, ForgeTheme.TEXT))
 
 	row.add_child(_flex_spacer())
 	_top_practice = _status_chip("OFFICIAL", ForgeTheme.LIME)
@@ -217,10 +217,10 @@ func _build_navigation() -> Control:
 
 func _build_bottom_bar() -> Control:
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size.y = 72.0
+	panel.custom_minimum_size.y = 68.0
 	panel.add_theme_stylebox_override(
 		"panel",
-		ForgeTheme.panel_style(ForgeTheme.SURFACE_RAISED, 18, ForgeTheme.BORDER_STRONG, 1),
+		ForgeTheme.panel_style(ForgeTheme.SURFACE, 12, ForgeTheme.BORDER, 1),
 	)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 10)
@@ -232,11 +232,11 @@ func _build_bottom_bar() -> Control:
 	row.add_child(_bottom_hint)
 
 	_bottom_secondary = Button.new()
-	_bottom_secondary.custom_minimum_size = Vector2(128.0, 48.0)
+	_bottom_secondary.custom_minimum_size = Vector2(128.0, 46.0)
 	row.add_child(_bottom_secondary)
 
 	_bottom_primary = Button.new()
-	_bottom_primary.custom_minimum_size = Vector2(170.0, 48.0)
+	_bottom_primary.custom_minimum_size = Vector2(170.0, 46.0)
 	ForgeTheme.apply_primary(_bottom_primary)
 	row.add_child(_bottom_primary)
 	return panel
@@ -1925,12 +1925,12 @@ func _best_score_text() -> String:
 
 func _page_heading(title: String, subtitle: String) -> Control:
 	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 16)
+	row.add_theme_constant_override("separation", 20)
 	var text := VBoxContainer.new()
-	text.add_theme_constant_override("separation", 3)
+	text.add_theme_constant_override("separation", 6)
 	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(text)
-	text.add_child(_make_label(title, 28, ForgeTheme.TEXT))
+	text.add_child(_make_label(title, 30, ForgeTheme.TEXT))
 	var subtitle_label := _make_label(subtitle, 15, ForgeTheme.MUTED)
 	subtitle_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	text.add_child(subtitle_label)
@@ -1945,14 +1945,14 @@ func _card(
 	border: Color = ForgeTheme.BORDER,
 ) -> PanelContainer:
 	var panel := PanelContainer.new()
-	panel.add_theme_stylebox_override("panel", ForgeTheme.panel_style(background, 16, border, 1))
+	panel.add_theme_stylebox_override("panel", ForgeTheme.panel_style(background, 12, border, 1))
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return panel
 
 
 func _hint_panel(title: String, body: String, accent: Color) -> Control:
 	var panel := PanelContainer.new()
-	var style := ForgeTheme.panel_style(Color(accent, 0.08), 12, Color(accent, 0.38), 1)
+	var style := ForgeTheme.panel_style(Color(accent, 0.07), 10, Color(accent, 0.22), 1)
 	style.content_margin_top = 12.0
 	style.content_margin_bottom = 12.0
 	panel.add_theme_stylebox_override("panel", style)
@@ -1977,13 +1977,16 @@ func _metric_block(eyebrow_text: String, value: String, detail: String) -> Contr
 
 func _status_chip(text: String, color: Color) -> Label:
 	var label := _make_label(text, 13, color)
+	label.theme_type_variation = &"ForgeStrong"
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.custom_minimum_size = Vector2(108.0, 40.0)
-	label.add_theme_stylebox_override(
-		"normal",
-		ForgeTheme.panel_style(ForgeTheme.SURFACE_RAISED, 11, ForgeTheme.BORDER, 1),
-	)
+	label.custom_minimum_size = Vector2(92.0, 36.0)
+	var chip_style := ForgeTheme.panel_style(ForgeTheme.SURFACE_RAISED, 10, ForgeTheme.BORDER, 1)
+	chip_style.content_margin_left = 10.0
+	chip_style.content_margin_right = 10.0
+	chip_style.content_margin_top = 8.0
+	chip_style.content_margin_bottom = 8.0
+	label.add_theme_stylebox_override("normal", chip_style)
 	return label
 
 
@@ -1994,6 +1997,8 @@ func _eyebrow(text: String) -> Label:
 func _make_label(text: String, font_size: int, color: Color) -> Label:
 	var label := Label.new()
 	label.text = text
+	if font_size >= 21:
+		label.theme_type_variation = &"ForgeHeading"
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
 	return label

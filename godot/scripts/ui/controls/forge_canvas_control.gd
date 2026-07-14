@@ -14,20 +14,20 @@ signal accessibility_announcement(text: String)
 		queue_redraw()
 
 var _palette: Dictionary = {
-	"background": Color("#08100F"),
-	"surface": Color("#121918"),
-	"surface_high": Color("#192220"),
-	"surface_low": Color("#202B28"),
-	"border": Color("#31413D"),
-	"grid": Color("#49635C"),
-	"text": Color("#F4F8F6"),
-	"muted": Color("#A8B7B2"),
-	"teal": Color("#39E6D3"),
-	"amber": Color("#FFBE5C"),
-	"magenta": Color("#DD65B7"),
-	"red": Color("#FF746E"),
-	"green": Color("#ADF06D"),
-	"shadow": Color(0.0, 0.0, 0.0, 0.28),
+	"background": Color("#F8F8F7"),
+	"surface": Color("#FFFFFF"),
+	"surface_high": Color("#FAFAF9"),
+	"surface_low": Color("#F1F1EF"),
+	"border": Color("#E5E5E2"),
+	"grid": Color("#A7A7A2"),
+	"text": Color("#121212"),
+	"muted": Color("#686865"),
+	"teal": Color("#168B72"),
+	"amber": Color("#B87518"),
+	"magenta": Color("#8655B5"),
+	"red": Color("#C94545"),
+	"green": Color("#2D8A4E"),
+	"shadow": Color(0.0, 0.0, 0.0, 0.08),
 }
 
 
@@ -92,7 +92,7 @@ func draw_card(rect: Rect2, elevated: bool = false, fill_override: Color = Color
 	var radius := int(round(dp(12.0)))
 	if elevated:
 		var shadow_style := _make_box(palette(&"shadow"), Color.TRANSPARENT, radius, 0)
-		draw_style_box(shadow_style, Rect2(rect.position + Vector2(0.0, dp(5.0)), rect.size))
+		draw_style_box(shadow_style, Rect2(rect.position + Vector2(0.0, dp(2.0)), rect.size))
 	var fill := palette(&"surface") if fill_override.a <= 0.0 else fill_override
 	var style := _make_box(fill, palette(&"border"), radius, max(1, int(round(dp(1.0)))))
 	draw_style_box(style, rect)
@@ -101,7 +101,7 @@ func draw_card(rect: Rect2, elevated: bool = false, fill_override: Color = Color
 func draw_focus_ring(rect: Rect2) -> void:
 	if not has_focus():
 		return
-	var style := _make_box(Color.TRANSPARENT, palette(&"teal").lightened(0.12), int(round(dp(13.0))), max(2, int(round(dp(2.0)))))
+	var style := _make_box(Color.TRANSPARENT, Color(palette(&"text"), 0.78), int(round(dp(13.0))), max(2, int(round(dp(2.0)))))
 	draw_style_box(style, rect.grow(-dp(2.0)))
 
 

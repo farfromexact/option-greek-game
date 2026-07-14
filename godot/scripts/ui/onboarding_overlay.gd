@@ -53,7 +53,7 @@ func _input(event: InputEvent) -> void:
 
 func _build() -> void:
 	var dim := ColorRect.new()
-	dim.color = Color(0.01, 0.02, 0.02, 0.88)
+	dim.color = Color(0.08, 0.08, 0.08, 0.42)
 	dim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(dim)
 
@@ -66,15 +66,15 @@ func _build() -> void:
 	add_child(center)
 
 	var card := PanelContainer.new()
-	card.custom_minimum_size = Vector2(620.0, 430.0)
+	card.custom_minimum_size = Vector2(640.0, 440.0)
 	card.add_theme_stylebox_override(
 		"panel",
-		ForgeTheme.panel_style(ForgeTheme.SURFACE_RAISED, 24, ForgeTheme.BORDER_STRONG, 1),
+		ForgeTheme.panel_style(ForgeTheme.SURFACE, 18, ForgeTheme.BORDER_STRONG, 1),
 	)
 	center.add_child(card)
 
 	var content := VBoxContainer.new()
-	content.add_theme_constant_override("separation", 20)
+	content.add_theme_constant_override("separation", 22)
 	card.add_child(content)
 
 	var top := HBoxContainer.new()
@@ -82,7 +82,7 @@ func _build() -> void:
 
 	var brand := Label.new()
 	brand.text = "VOLATILITY FORGE 2D"
-	brand.add_theme_color_override("font_color", ForgeTheme.TEAL)
+	brand.add_theme_color_override("font_color", ForgeTheme.TEXT)
 	brand.add_theme_font_size_override("font_size", 13)
 	brand.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(brand)
@@ -95,8 +95,9 @@ func _build() -> void:
 	top.add_child(skip_button)
 
 	_step_label = Label.new()
-	_step_label.add_theme_color_override("font_color", ForgeTheme.AMBER)
-	_step_label.add_theme_font_size_override("font_size", 52)
+	_step_label.theme_type_variation = &"ForgeHeading"
+	_step_label.add_theme_color_override("font_color", ForgeTheme.TEXT)
+	_step_label.add_theme_font_size_override("font_size", 48)
 	content.add_child(_step_label)
 
 	_eyebrow = Label.new()
@@ -105,6 +106,7 @@ func _build() -> void:
 	content.add_child(_eyebrow)
 
 	_title = Label.new()
+	_title.theme_type_variation = &"ForgeHeading"
 	_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title.add_theme_font_size_override("font_size", 30)
 	_title.add_theme_color_override("font_color", ForgeTheme.TEXT)
