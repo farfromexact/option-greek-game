@@ -1,9 +1,6 @@
-node_modules/
-dist/
 .agents/
 .codex/
 *.log
-*.tsbuildinfo
 godot/.godot/
 godot/export/
 godot/builds/

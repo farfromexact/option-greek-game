@@ -2,29 +2,26 @@
 
 ## Project Structure & Module Organization
 
-This repository is a Vite + React + TypeScript browser game named Volatility Forge. Application wiring lives in `src/app/App.tsx`; reusable UI panels live in `src/components/`; pricing, portfolio, market simulation, volatility surface, and attribution logic live in `src/engine/`; game content, scoring, tutorial, progress, and procedural level generation live in `src/game/`. Shared types are in `src/types.ts`, global styles are in `src/styles/main.css`, and README screenshots are stored in `docs/screenshots/`. Build output goes to `dist/` and must not be committed.
+This repository contains the Godot 4.7 2D game Volatility Forge. The project root is `godot/`; `godot/scenes/` contains scenes, `godot/scripts/engine/` contains pricing and simulation logic, `godot/scripts/game/` contains missions, rules, scoring, and persistence, and `godot/scripts/ui/` contains interface code and custom controls. Headless tests live in `godot/tests/`, while the repository-level verification entrypoint is `scripts/godot-verify.ps1`.
 
 ## Build, Test, and Development Commands
 
-- `npm install`: install dependencies from `package-lock.json`.
-- `npm run dev`: start Vite on `127.0.0.1` for local development.
-- `npm run build`: run TypeScript checking with `tsc --noEmit`, then build with Vite.
-- `npm run preview`: preview the production build locally.
-- `npm run goal-audit`: run `scripts/goal-audit.mjs` to verify core feature wiring.
-- `npm run verify`: run the full project check (`build` + `goal-audit`).
+- `godot --editor --path godot`: open the project in the Godot editor.
+- `godot --path godot`: run the game directly.
+- `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/godot-verify.ps1`: run project parsing, rules, engine, integration, main-flow, and startup checks.
 
 ## Coding Style & Naming Conventions
 
-Use TypeScript and React function components. Keep component files in PascalCase, for example `GreekDashboard.tsx`; keep engine and game modules in camelCase, for example `marketSimulator.ts` and `pnlAttribution.ts`. Prefer explicit types for shared interfaces in `src/types.ts`. Keep comments short and only where they clarify non-obvious pricing, simulation, or scoring behavior. Follow the existing two-space indentation and CSS class naming patterns.
+Use typed GDScript where values cross module boundaries. Keep scripts and methods in snake_case, classes and node types in PascalCase, and constants in UPPER_SNAKE_CASE. Follow the indentation already used by the surrounding GDScript file. Keep comments short and reserve them for non-obvious pricing units, simulation invariants, scoring rules, and persistence constraints.
 
 ## Testing Guidelines
 
-There is no separate unit test framework configured yet. Treat `npm run verify` as the required pre-commit check. When changing gameplay systems, update `scripts/goal-audit.mjs` if the feature contract changes. For UI changes, manually inspect the local app and refresh screenshots in `docs/screenshots/` only when the README visuals need to change.
+Treat `scripts/godot-verify.ps1` as the required pre-commit check. Gameplay rule changes must update or extend the relevant smoke test under `godot/tests/` or `godot/scripts/engine/`. UI changes should be inspected in the Godot runtime at both the normal desktop size and a compact window. Do not treat successful parsing alone as proof that the main flow works.
 
 ## Commit & Pull Request Guidelines
 
-The current history uses concise imperative commit messages, such as `Initial option greeks game`. Keep future messages short and action-oriented, for example `Add volatility surface drill`. Pull requests should include a short summary, verification commands run, screenshots for visible UI changes, and any notes about changed scoring, persistence, or generated level behavior.
+Use short imperative commit messages, for example `Remove legacy web prototype` or `Tune volatility mission`. Pull requests should summarize player-visible impact, list verification performed, include screenshots for visual changes, and call out changes to scoring, persistence, pricing units, or generated content.
 
-## Security & Configuration Tips
+## Security & Generated Files
 
-Do not commit credentials, real trading data, API keys, logs, `node_modules/`, or `dist/`. This project uses simulated market data and stores player progress in browser `localStorage`.
+Do not commit credentials, real trading data, API keys, logs, Godot import caches, exports, or builds. The game uses simulated market data and stores progress under Godot `user://`.
