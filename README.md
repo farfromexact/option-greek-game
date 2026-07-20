@@ -56,6 +56,18 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/godot-verify.ps1
 - 本地进度、成绩和排行榜记录
 - 面向桌面和紧凑窗口的原生 Godot 2D 界面
 
+## OpenAI Build Week: Codex and GPT-5.6
+
+Volatility Forge was developed with Codex as an active engineering collaborator running GPT-5.6. The human author set the product direction, options-risk rules, learning goals, and final design decisions; Codex helped turn those decisions into a tested native Godot project.
+
+- **Architecture and implementation:** Codex inspected the original browser prototype, planned the Godot 4.7 port, and implemented modular GDScript systems for pricing, market simulation, portfolio state, mission rules, scoring, persistence, and UI.
+- **Gameplay reasoning:** GPT-5.6 helped define fixed mission horizons, forecast-before-reveal rules, official versus practice runs, transaction-cost handling, deterministic seeds, immutable replay records, and explainable P&L attribution.
+- **Godot workflow:** Codex configured Godot and Godot MCP, launched the editor and project, inspected debug output, and used the running desktop game as a feedback loop while refining the interface.
+- **Visual iteration:** Codex translated supplied visual references into a quieter high-contrast design, then checked typography, spacing, responsive layouts, and interaction states in the native app.
+- **Verification:** Codex added and ran headless rules, pricing-engine, integration, and main-flow smoke tests, and reviewed the Git diff before the changes were merged through pull requests.
+
+The result is not a generated mockup: it is a playable Godot application whose simulations, risk limits, scoring, replay, and persistence are exercised by automated tests.
+
 ## 目录
 
 ```text
